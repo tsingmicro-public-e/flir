@@ -36,3 +36,9 @@ void StoreOp::getEffects(
 OpFoldResult TypeOffsetOp::fold(FoldAdaptor adaptor) {
   return adaptor.getBaseTypeAttr();
 }
+
+void TypeOffsetOp::build(OpBuilder &odsBuilder, OperationState &odsState,
+                         TypeAttr baseType, Type resultTy) {
+  build(odsBuilder, odsState,
+        resultTy ? resultTy : odsBuilder.getIndexType(), baseType);
+}
